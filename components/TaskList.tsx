@@ -106,24 +106,33 @@ export default function TaskList({
               </div>
 
               {/* 心得记录区域 */}
-              <AnimatePresence>
-                {(isCompleted || note) && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="overflow-hidden"
-                  >
-                    <TaskNote
-                      taskIndex={index}
-                      taskText={task}
-                      initialNote={note}
-                      onSaveNote={handleSaveNote}
-                      isCompleted={isCompleted}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+<AnimatePresence>
+  {(isCompleted || note) && ( // 这里保持原条件，TaskNote 组件内部会处理隐藏逻辑
+    <motion.div
+      key={`note-${index}`} // 为每个任务的心得区域添加唯一的 key
+      initial={{ height: 0, opacity: 0 }}
+      animate={{
+        height: 'auto',
+        opacity: 1,
+        transition: { duration: 0.3, ease: "easeOut" }
+      }}
+      exit={{
+        height: 0,
+        opacity: 0,
+        transition: { duration: 0.2, ease: "easeIn" }
+      }}
+      className="overflow-hidden"
+    >
+      <TaskNote
+        taskIndex={index}
+        taskText={task}
+        initialNote={note}
+        onSaveNote={handleSaveNote}
+        isCompleted={isCompleted}
+      />
+    </motion.div>
+  )}
+</AnimatePresence>
 
               {/* 展开详情（原提示） */}
               <AnimatePresence>

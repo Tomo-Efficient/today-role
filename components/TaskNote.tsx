@@ -21,7 +21,6 @@ export default function TaskNote({
   const [isEditing, setIsEditing] = useState(false);
   const [note, setNote] = useState(initialNote);
   const [showNote, setShowNote] = useState(!!initialNote);
-  const [shouldRenderNote, setShouldRenderNote] = useState(!!initialNote || isCompleted);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -34,45 +33,28 @@ export default function TaskNote({
     const trimmedNote = note.trim();
     onSaveNote(taskIndex, trimmedNote);
     setIsEditing(false);
-    setShowNote(true);
-    // 如果保存了内容，确保继续显示心得区域
-    if (trimmedNote) {
-      setShouldRenderNote(true);
-    }
+    setShowNote(!!trimmedNote);
   };
 
   const handleCancel = () => {
     setNote(initialNote);
     setIsEditing(false);
-
-    // 如果没有初始心得且用户取消了编辑，应该完全隐藏心得区域
     if (!initialNote) {
       setShowNote(false);
-      // 延迟隐藏整个组件，让动画先完成
-      setTimeout(() => {
-        setShouldRenderNote(false);
-      }, 300); // 匹配动画持续时间
     }
   };
 
-  // 当任务完成时，确保显示心得区域
-  useEffect(() => {
-    if (isCompleted && !shouldRenderNote) {
-      setShouldRenderNote(true);
-    }
-  }, [isCompleted, shouldRenderNote]);
-
-  // 如果任务未完成且没有心得，则不渲染组件
-  if (!shouldRenderNote) {
+  // 如果没有心得且不在编辑状态，任务未完成时不显示
+  if (!isCompleted && !showNote && !isEditing) {
     return null;
   }
 
   return (
-    <div className="mt-3 pl-4">
-      <AnimatePresence mode="wait"> {/* 添加 mode="wait" 确保动画按顺序执行 */}
+    <div className={isEditing ? "mt-3 pl-4" : ""}> {/* 只在编辑时添加上边距 */}
+      <AnimatePresence mode="wait">
         {isEditing ? (
           <motion.div
-            key="editing" // 添加 key 帮助 AnimatePresence 识别不同的状态
+            key="editing"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -104,12 +86,12 @@ export default function TaskNote({
           </motion.div>
         ) : showNote ? (
           <motion.div
-            key="viewing" // 添加 key
+            key="viewing"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="group cursor-pointer"
+            className="group cursor-pointer mt-2" // 少量上边距
             onClick={() => setIsEditing(true)}
           >
             <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg border border-gray-200">
@@ -129,19 +111,20 @@ export default function TaskNote({
           </motion.div>
         ) : isCompleted ? (
           <motion.div
-            key="prompt" // 添加 key
+            key="prompt"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="flex items-center"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.1 }}
+            className="inline-block" // 改为行内块，可以放在任务同一行
           >
             <button
               onClick={() => setIsEditing(true)}
-              className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1 px-3 py-1.5 rounded-lg border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors"
+              className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1 px-2 py-1 rounded-lg border border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors ml-2" // 添加左边距
+              title="记录心得"
             >
-              <span>📝</span>
-              <span>记录心得</span>
+              <span className="text-xs">📝</span>
+              <span className="text-xs">记录</span> {/* 简化文字 */}
             </button>
           </motion.div>
         ) : null}

@@ -7,7 +7,7 @@ export interface HistoryEntry {
   role: Role;
   date: string;
   done: number;
-  notes: string[];
+  notes: (string | undefined)[];
 }
 
 interface HistoryPanelProps {
@@ -61,11 +61,13 @@ export default function HistoryPanel({ entries, onClose }: HistoryPanelProps) {
                   </p>
                   {entry.notes.length > 0 && (
                     <div className="mt-2 space-y-1">
-                      {entry.notes.map((note, i) => (
-                        <p key={i} className="text-sm text-gray-600">
-                          <span className="text-gray-400">任务 {i + 1}：</span>{note}
-                        </p>
-                      ))}
+                      {entry.notes.map((note, i) =>
+                        note ? (
+                          <p key={i} className="text-sm text-gray-600">
+                            <span className="text-gray-400">任务 {i + 1}：</span>{note}
+                          </p>
+                        ) : null
+                      )}
                     </div>
                   )}
                 </div>

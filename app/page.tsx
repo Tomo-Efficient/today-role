@@ -432,7 +432,7 @@ export default function HomePage() {
                 role,
                 date: item.date,
                 done: item.progress.completedTasks.filter(Boolean).length,
-                notes: (item.progress.notes || []).filter(Boolean),
+                notes: item.progress.notes || [],
               } as HistoryEntry;
             })
             .filter((item): item is HistoryEntry => item !== null)}

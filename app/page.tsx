@@ -5,8 +5,9 @@ import { useState, useEffect } from 'react';
 import RoleCard from '@/components/RoleCard';
 import TaskList from '@/components/TaskList';
 import AchievementsPanel from '@/components/AchievementsPanel';
+import HistoryPanel, { HistoryEntry } from '@/components/HistoryPanel';
 import ShareImageModal from '@/components/ShareImageModal';
-import { getTodaysRoleSequence } from '@/lib/roles';
+import { getTodaysRoleSequence, roleLibrary } from '@/lib/roles';
 import {
   getStoredProgress,
   saveProgress,
@@ -42,6 +43,7 @@ export default function HomePage() {
   // 新增状态
   const [showAchievements, setShowAchievements] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
   const [notification, setNotification] = useState<{
     message: string;
@@ -393,10 +395,7 @@ export default function HomePage() {
           </button>
 
           <button
-            onClick={() => {
-              // 可以添加查看历史的功能
-              showNotification('历史记录功能开发中...', 'info');
-            }}
+            onClick={() => setShowHistory(true)}
             className="p-4 bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-xl hover:opacity-90 transition-opacity flex flex-col items-center justify-center"
           >
             <span className="text-2xl mb-2">📜</span>
@@ -423,6 +422,24 @@ export default function HomePage() {
       </main>
 
       {/* 成就面板 */}
+      {showHistory && (
+        <HistoryPanel
+          entries={getAllHistory(userId)
+            .map((item) => {
+              const role = roleLibrary.find((r) => r.id === item.roleId);
+              if (!role) return null;
+              return {
+                role,
+                date: item.date,
+                done: item.progress.completedTasks.filter(Boolean).length,
+                notes: (item.progress.notes || []).filter(Boolean),
+              } as HistoryEntry;
+            })
+            .filter((item): item is HistoryEntry => item !== null)}
+          onClose={() => setShowHistory(false)}
+        />
+      )}
+
       {showAchievements && (
         <AchievementsPanel
           achievements={achievements}

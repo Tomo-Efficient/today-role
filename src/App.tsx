@@ -310,7 +310,7 @@ export default function App() {
               setProfileOpen(false)
               setRoute('workshop')
             }}
-            className="press w-full rounded-2xl border-2 border-brand-line py-3 text-[14px] font-extrabold text-brand-ink"
+            className="press w-full rounded-2xl border border-brand-line py-3 text-[14px] font-extrabold text-brand-ink"
           >
             我的角色工坊
           </button>
@@ -320,7 +320,7 @@ export default function App() {
               setProfileOpen(false)
               setRoute('home')
             }}
-            className="press w-full rounded-2xl border-2 border-brand-line py-3 text-[14px] font-extrabold text-brand-ink"
+            className="press w-full rounded-2xl border border-brand-line py-3 text-[14px] font-extrabold text-brand-ink"
           >
             退出登录
           </button>

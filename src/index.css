@@ -42,7 +42,7 @@
   }
 
   .btn-ghost {
-    @apply btn h-14 border-2 border-brand-line bg-white text-base text-brand-ink shadow-[0_3px_0_#E5E7EB];
+    @apply btn h-14 border border-brand-line bg-white text-base text-brand-ink shadow-[0_3px_0_#E5E7EB];
   }
 
   .btn-ghost:active {

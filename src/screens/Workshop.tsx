@@ -208,7 +208,7 @@ function CreateRole({
                   value={t}
                   onChange={(e) => setTasks(tasks.map((x, j) => (j === i ? e.target.value : x)))}
                   placeholder={`任务 ${i + 1}`}
-                  className="w-full rounded-xl border-2 border-brand-line px-3 py-2.5 text-[14px] font-semibold text-brand-ink outline-none placeholder:font-medium placeholder:text-[#B0B7BD] focus:border-brand-blue"
+                  className="w-full rounded-xl border border-brand-line px-3 py-2.5 text-[14px] font-semibold text-brand-ink outline-none placeholder:font-medium placeholder:text-[#B0B7BD] focus:border-brand-blue"
                 />
               </div>
             ))}
@@ -248,14 +248,14 @@ function Input({
           onChange={(e) => onChange(e.target.value)}
           rows={3}
           placeholder={placeholder}
-          className="w-full resize-none rounded-2xl border-2 border-brand-line px-3.5 py-3 text-[14px] font-semibold text-brand-ink outline-none placeholder:font-medium placeholder:text-[#B0B7BD] focus:border-brand-blue"
+          className="w-full resize-none rounded-2xl border border-brand-line px-3.5 py-3 text-[14px] font-semibold text-brand-ink outline-none placeholder:font-medium placeholder:text-[#B0B7BD] focus:border-brand-blue"
         />
       ) : (
         <input
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full rounded-2xl border-2 border-brand-line px-3.5 py-3 text-[14px] font-semibold text-brand-ink outline-none placeholder:font-medium placeholder:text-[#B0B7BD] focus:border-brand-blue"
+          className="w-full rounded-2xl border border-brand-line px-3.5 py-3 text-[14px] font-semibold text-brand-ink outline-none placeholder:font-medium placeholder:text-[#B0B7BD] focus:border-brand-blue"
         />
       )}
     </div>

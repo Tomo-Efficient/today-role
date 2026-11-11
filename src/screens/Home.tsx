@@ -57,8 +57,9 @@ export function Home({
 
   return (
     <Screen>
-      <div className="sticky top-0 z-30 border-b border-brand-line bg-white/95 backdrop-blur">
-        <div className="flex items-center justify-between px-5 py-3">
+      <div className="sticky top-0 z-30 bg-white/95 backdrop-blur">
+        <div className="relative flex items-center justify-between px-5 py-3">
+          <div className="pointer-events-none absolute -bottom-px left-1/2 h-px w-screen -translate-x-1/2 bg-brand-line" />
           <div className="flex items-center gap-2">
             <span className="text-2xl">🎭</span>
             <span className="text-[19px] font-extrabold tracking-tight text-brand-ink">重开么</span>
@@ -199,7 +200,7 @@ export function Home({
                             onChange={(e) => setDraft(e.target.value)}
                             rows={3}
                             placeholder="描述你的感受、发现或灵感"
-                            className="w-full resize-none rounded-xl border-2 border-brand-line bg-white px-3 py-2.5 text-[14px] font-medium text-brand-ink outline-none placeholder:text-[#B0B7BD] focus:border-brand-blue"
+                            className="w-full resize-none rounded-xl border border-brand-line bg-white px-3 py-2.5 text-[14px] font-medium text-brand-ink outline-none placeholder:text-[#B0B7BD] focus:border-brand-blue"
                           />
                           <div className="mt-2 flex gap-2">
                             <button
@@ -224,7 +225,7 @@ export function Home({
                                 setOpen(null)
                                 toast('任务完成！')
                               }}
-                              className="press rounded-xl border-2 border-brand-line px-4 py-2.5 text-[14px] font-extrabold text-brand-sub"
+                              className="press rounded-xl border border-brand-line px-4 py-2.5 text-[14px] font-extrabold text-brand-sub"
                             >
                               跳过
                             </button>

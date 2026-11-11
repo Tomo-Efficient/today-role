@@ -195,7 +195,7 @@ export function Community({
               ))}
             </div>
 
-            <div className="mt-5 flex items-center gap-2 rounded-2xl border-2 border-brand-line px-3 py-2">
+            <div className="mt-5 flex items-center gap-2 rounded-2xl border border-brand-line px-3 py-2">
               <input
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}

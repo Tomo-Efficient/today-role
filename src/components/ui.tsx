@@ -3,8 +3,8 @@ import { ArrowLeft, X } from 'lucide-react'
 
 export function Screen({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-screen w-full justify-center bg-[#F2F4F5]">
-      <div className="w-full max-w-[430px] bg-white md:my-6 md:min-h-[calc(100vh-48px)] md:overflow-hidden md:rounded-[36px] md:shadow-[0_24px_70px_rgba(0,0,0,0.14)]">
+    <div className="flex min-h-screen w-full justify-center bg-white">
+      <div className="w-full max-w-[460px] bg-white">
         {children}
       </div>
     </div>

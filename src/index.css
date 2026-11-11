@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply bg-[#F2F4F5] text-brand-ink antialiased;
+    @apply bg-white text-brand-ink antialiased;
     -webkit-tap-highlight-color: transparent;
   }
 

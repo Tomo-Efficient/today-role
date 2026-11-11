@@ -24,7 +24,7 @@ export function Login({ onLogin, toast }: { onLogin: (u: User) => void; toast: (
 
   return (
     <Screen>
-      <div className="flex min-h-[calc(100vh-48px)] flex-col justify-center px-6 py-10">
+      <div className="mx-auto my-10 flex w-full max-w-[440px] flex-col justify-center rounded-[28px] border border-brand-line bg-white px-6 py-9 shadow-[0_18px_60px_rgba(0,0,0,0.10)] md:min-h-[720px] md:px-9">
         <div className="animate-floatIn flex flex-col items-center">
           <div className="text-6xl" style={{ filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.12))' }}>
             🎭
@@ -109,7 +109,7 @@ function Field({ icon, label, children }: { icon: React.ReactNode; label: string
   return (
     <div>
       <div className="mb-2 text-[13px] font-extrabold text-[#6B7280]">{label}</div>
-      <div className="flex items-center gap-3 rounded-2xl border-2 border-brand-line bg-white px-4 py-3.5 focus-within:border-brand-blue">
+      <div className="flex items-center gap-3 rounded-2xl border border-brand-line bg-[#F7F7F7] px-4 py-3.5 focus-within:border-brand-blue">
         <span className="text-[#9AA0A6]">{icon}</span>
         {children}
       </div>

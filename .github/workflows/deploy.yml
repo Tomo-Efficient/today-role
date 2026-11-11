@@ -27,11 +27,11 @@ jobs:
       - name: Build static export
         run: npm run build
         env:
-          PAGES_BASE_PATH: /today-role
+          PAGES_BASE_PATH: /today-role/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: dist
 
   deploy:
     environment:

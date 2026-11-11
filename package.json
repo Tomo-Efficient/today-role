@@ -1,28 +1,28 @@
 {
-  "name": "today-role",
-  "version": "0.1.0",
+  "name": "juese-manghe",
   "private": true,
+  "version": "0.1.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --port 4173"
   },
   "dependencies": {
-    "dom-to-image": "^2.6.0",
-    "framer-motion": "^10.16.16",
-    "html2canvas": "^1.4.1",
-    "next": "14.1.0",
-    "react": "^18",
-    "react-dom": "^18"
+    "lucide-react": "^0.462.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32",
-    "tailwindcss": "^3.4.0",
-    "typescript": "^5"
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "miniprogram-automator": "^0.13.0",
+    "postcss": "^8.4.49",
+    "puppeteer-core": "^25.16.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
   }
 }
